@@ -41,7 +41,7 @@ SQL
 TABLE_COUNT=$(mariadb --protocol=socket -uroot -Nse "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='${DB_NAME}'")
 
 if [ "$TABLE_COUNT" -eq 0 ]; then
-    mariadb --protocol=socket -uroot "${DB_NAME}" < /var/www/html/schema.sql
+    mariadb --protocol=socket -uroot "${DB_NAME}" < /var/www/html/rodados_del_sudoeste.sql
 fi
 
 exec "$@"
