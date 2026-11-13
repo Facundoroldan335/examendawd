@@ -1,11 +1,17 @@
 <?php
-$host = getenv("DB_HOST") ?: "localhost";
-$usuario = getenv("DB_USER") ?: "root";
-$clave = getenv("DB_PASSWORD") ?: "";
+$host = getenv("DB_HOST") ?: "127.0.0.1";
+$puerto = getenv("DB_PORT") ?: "3306";
+$usuario = getenv("DB_USER") ?: "rodados_user";
+$clave = getenv("DB_PASSWORD");
 $basededatos = getenv("DB_NAME") ?: "rodados_del_sudeste";
+
+if ($clave === false || $clave === "") {
+    die("Error: falta configurar DB_PASSWORD en Render.");
+}
+
 try {
     $conexion = new PDO(
-        "mysql:host=$host;dbname=$basededatos;charset=utf8mb4",
+        "mysql:host=$host;port=$puerto;dbname=$basededatos;charset=utf8mb4",
         $usuario,
         $clave
     );
