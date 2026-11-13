@@ -15,11 +15,8 @@ ENV DB_USER=rodados_user
 COPY . /var/www/html/
 
 RUN dos2unix /var/www/html/docker-entrypoint.sh \
-    && cp /var/www/html/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh \
-    && chmod +x /usr/local/bin/docker-entrypoint.sh
+    && chmod +x /var/www/html/docker-entrypoint.sh
 
 EXPOSE 80
 
-ENTRYPOINT ["/bin/bash", "/usr/local/bin/docker-entrypoint.sh"]
-
-CMD ["apache2-foreground"]
+CMD ["/bin/bash", "/var/www/html/docker-entrypoint.sh", "apache2-foreground"]
