@@ -11,6 +11,7 @@ ENV DB_HOST=127.0.0.1
 ENV DB_PORT=3306
 ENV DB_NAME=rodados_del_sudeste
 ENV DB_USER=rodados_user
+ENV DB_PASSWORD=tu_contraseña
 
 COPY . /var/www/html/
 
