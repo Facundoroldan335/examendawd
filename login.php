@@ -9,7 +9,7 @@ if (isset($_SESSION['id'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +33,7 @@ if (isset($_SESSION['id'])) {
         <br><br>
         <label for="password">Contraseña</label>
         <br><br>
-        <input type="password" id="password" name="password">
+        <input type="password" id="password" name="password" required>
         <br><br>
         <button type="submit">Iniciar Sesion</button>
         </form>
