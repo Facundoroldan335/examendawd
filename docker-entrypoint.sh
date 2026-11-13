@@ -38,6 +38,6 @@ GRANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO '${DB_USER}'@'localhost';
 FLUSH PRIVILEGES;
 SQL
 
-mysql --protocol=socket -uroot "${DB_NAME}" < /var/www/html/db/rodados_del_sudoeste.sql
+mysql --protocol=socket -uroot "${DB_NAME}" < /var/www/html/rodados_del_sudoeste.sql
 
 exec apache2-foreground
