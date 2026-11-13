@@ -5,10 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 function esta_autenticado() {
-    if(isset($_SESSION["id"])) {
-        return true;
-    }
-    return false;
+    return isset($_SESSION["id"]);
 }
 
 function es_admin() {
@@ -16,21 +13,20 @@ function es_admin() {
 }
 
 function requerir_autenticacion() {
-    if(!esta_autenticado()) {
+    if (!esta_autenticado()) {
         header("Location: login.php");
         exit();
     }
 }
 
 function requerir_rol($rol_esperado) {
-    if(!esta_autenticado()) {
+    if (!esta_autenticado()) {
         header("Location: login.php");
         exit();
     }
-    if($_SESSION["rol"] != $rol_esperado) {
+
+    if ($_SESSION["rol"] != $rol_esperado) {
         http_response_code(403);
-        echo "403 - No tenes permisos para acceder a esta pagina.";
-        exit();
+        exit("403 - No tenes permisos para acceder a esta pagina.");
     }
 }
-?>
