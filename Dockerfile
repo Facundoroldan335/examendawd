@@ -18,6 +18,11 @@ COPY . /var/www/html/
 RUN dos2unix /var/www/html/docker-entrypoint.sh \
     && chmod +x /var/www/html/docker-entrypoint.sh
 
+RUN apt-get update \
+    && apt-get install -y mariadb-server mariadb-client dos2unix \
+    && docker-php-ext-install pdo_mysql \
+    && a2enmod rewrite \
+    && rm -rf /var/lib/apt/lists/*
 EXPOSE 80
 
 CMD ["/bin/bash", "/var/www/html/docker-entrypoint.sh", "apache2-foreground"]
