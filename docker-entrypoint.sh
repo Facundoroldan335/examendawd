@@ -4,9 +4,10 @@ set -e
 PORT="${PORT:-80}"
 DB_HOST="${DB_HOST:-127.0.0.1}"
 DB_PORT="${DB_PORT:-3306}"
-DB_NAME="${DB_NAME:-tienda}"
-DB_USER="${DB_USER:-tienda}"
-DB_PASSWORD="${DB_PASSWORD:-tienda}"
+DB_NAME="${DB_NAME:-rodados_del_sudeste}"
+DB_USER="${DB_USER:-rodados_user}"
+DB_PASSWORD="${DB_PASSWORD:?Falta configurar DB_PASSWORD}"
+
 
 sed -ri "s/^Listen 80$/Listen ${PORT}/" /etc/apache2/ports.conf
 sed -ri "s/<VirtualHost \*:80>/<VirtualHost *:${PORT}>/" /etc/apache2/sites-available/000-default.conf
@@ -30,11 +31,19 @@ for _ in $(seq 1 60); do
 done
 
 mysql --protocol=socket -uroot <<SQL
-CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+mariadb --protocol=socket -uroot <<SQL
+CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;
+
 CREATE USER IF NOT EXISTS '${DB_USER}'@'127.0.0.1' IDENTIFIED BY '${DB_PASSWORD}';
+CREATE USER IF NOT EXISTS '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';
+
 ALTER USER '${DB_USER}'@'127.0.0.1' IDENTIFIED BY '${DB_PASSWORD}';
+ALTER USER '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';
+
 GRANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO '${DB_USER}'@'127.0.0.1';
 GRANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO '${DB_USER}'@'localhost';
+
 FLUSH PRIVILEGES;
 SQL
 
