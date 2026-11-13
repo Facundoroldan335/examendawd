@@ -1,5 +1,4 @@
 <?php
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -9,9 +8,7 @@ function esta_autenticado() {
 }
 
 function es_admin() {
-    return esta_autenticado() &&
-           isset($_SESSION["rol"]) &&
-           $_SESSION["rol"] === "admin";
+    return esta_autenticado() && isset($_SESSION["rol"]) && $_SESSION["rol"] === "admin";
 }
 
 function requerir_autenticacion() {
@@ -24,9 +21,8 @@ function requerir_autenticacion() {
 function requerir_rol($rol_esperado) {
     requerir_autenticacion();
 
-    if ($_SESSION["rol"] !== $rol_esperado) {
+    if (!isset($_SESSION["rol"]) || $_SESSION["rol"] !== $rol_esperado) {
         http_response_code(403);
-        echo "403 - No tenes permisos para acceder a esta pagina.";
-        exit();
+        exit("403 - No tenes permisos para acceder a esta pagina.");
     }
 }
