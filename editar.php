@@ -1,7 +1,7 @@
-
 <?php
-require "conexion.php";
-require "auth.php";
+require_once "auth.php";
+require_once "conexion.php";
+
 requerir_rol("admin");
 $id = $_GET["id"] ?? "";
 if (!filter_var($id, FILTER_VALIDATE_INT) || $id <= 0) {

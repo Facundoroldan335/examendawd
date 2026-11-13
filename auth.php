@@ -1,5 +1,9 @@
+
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 function esta_autenticado() {
     if(isset($_SESSION["id"])) {
         return true;
@@ -10,12 +14,14 @@ function esta_autenticado() {
 function es_admin() {
     return esta_autenticado() && isset($_SESSION["rol"]) && $_SESSION["rol"] === "admin";
 }
+
 function requerir_autenticacion() {
     if(!esta_autenticado()) {
         header("Location: login.php");
         exit();
     }
 }
+
 function requerir_rol($rol_esperado) {
     if(!esta_autenticado()) {
         header("Location: login.php");
