@@ -35,17 +35,17 @@ if (!$vehiculo) {
         <form action="actualizar.php" method="POST">
             <input type="hidden" name="id" value="<?php echo (int)$vehiculo["id"]; ?>">
             <label>Marca:</label>
-            <input type="text" name="marca" value="<?php echo htmlspecialchars($vehiculo["marca"], ENT_QUOTES, "UTF-8"); ?>" required>
+            <input type="text" name="marca" value="<?php echo htmlspecialchars($auto["marca"], ENT_QUOTES, "UTF-8"); ?>" required>
             <label>Modelo:</label>
-            <input type="text" name="modelo" value="<?php echo htmlspecialchars($vehiculo["modelo"], ENT_QUOTES, "UTF-8"); ?>" required>
+            <input type="text" name="modelo" value="<?php echo htmlspecialchars($auto["modelo"], ENT_QUOTES, "UTF-8"); ?>" required>
             <label>Año:</label>
-            <input type="number" name="anio" value="<?php echo (int)$vehiculo["anio"]; ?>" required>
+            <input type="number" name="anio" value="<?php echo (int)$auto["anio"]; ?>" required>
             <label>Precio:</label>
-            <input type="number" name="precio" value="<?php echo htmlspecialchars($vehiculo["precio"], ENT_QUOTES, "UTF-8"); ?>" required>
+            <input type="number" name="precio" value="<?php echo htmlspecialchars($auto["precio"], ENT_QUOTES, "UTF-8"); ?>" required>
             <label>Descripción:</label>
-            <textarea name="descripcion" required><?php echo htmlspecialchars($vehiculo["descripcion"], ENT_QUOTES, "UTF-8"); ?></textarea>
+            <textarea name="descripcion" required><?php echo htmlspecialchars($auto["descripcion"], ENT_QUOTES, "UTF-8"); ?></textarea>
             <label>Imagen:</label>
-            <input type="text" name="imagen" value="<?php echo htmlspecialchars($vehiculo["imagen"], ENT_QUOTES, "UTF-8"); ?>" required>
+            <input type="text" name="imagen" value="<?php echo htmlspecialchars($auto["imagen"], ENT_QUOTES, "UTF-8"); ?>" required>
             <button type="submit">Guardar cambios</button>
         </form>
     </div>
