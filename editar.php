@@ -37,10 +37,10 @@ if (!$auto) {
             <input type="hidden" name="id" value="<?php echo (int)$auto["id"]; ?>">
 
             <label>Marca:</label>
-            <input type="text" name="marca" value="<?php echo htmlspecialchars($auto["marca"], ENT_QUOTES, "UTF-8"); ?>" required>
+            <input type="text" name="marca" value="<?php echohtmlspecialchars($auto["marca"] ?? '', ENT_QUOTES, "UTF-8"); ?>" required>
 
             <label>Modelo:</label>
-            <input type="text" name="modelo" value="<?php echo htmlspecialchars($auto["modelo"], ENT_QUOTES, "UTF-8"); ?>" required>
+            <input type="text" name="modelo" value="<?php echo htmlspecialchars($auto["modelo"] ?? '', ENT_QUOTES, "UTF-8"); ?>" required>
 
             <label>Año:</label>
             <input type="number" name="anio" value="<?php echo (int)$auto["anio"]; ?>" required>
@@ -52,7 +52,7 @@ if (!$auto) {
             <textarea name="descripcion" required><?php echo htmlspecialchars($auto["descripcion"], ENT_QUOTES, "UTF-8"); ?></textarea>
 
             <label>Imagen:</label>
-            <input type="text" name="imagen" value="<?php echo htmlspecialchars($auto["imagen"], ENT_QUOTES, "UTF-8"); ?>" required>
+            <input type="text" name="imagen" value="<?php echo htmlspecialchars($auto["imagen"] ?? '', ENT_QUOTES, "UTF-8"); ?>" required>
 
             <button type="submit">Guardar cambios</button>
         </form>
